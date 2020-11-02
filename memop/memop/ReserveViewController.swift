@@ -10,11 +10,9 @@ import UIKit
 
 import Lottie
 
-class ReserveViewController: UIViewController {
+class ReserveViewController: UIViewController,UITextFieldDelegate, UITextViewDelegate{
     
     @IBOutlet weak var taitolText: UITextField!
-    @IBOutlet weak var mainTextView: UITextView!
-    
     @IBOutlet weak var contentText: UITextView!
     @IBOutlet weak var dateText: UITextField!
     @IBOutlet weak var saveB: UIButton!
@@ -29,16 +27,16 @@ class ReserveViewController: UIViewController {
     var screenShotImage = UIImage()
     
     //AnimationViewを宣言
-       var animationView = AnimationView()
-       
-    
+    var animationView = AnimationView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        taitolText.delegate = self
+        dateText.delegate = self
+        contentText.delegate = self
         
-        
-       
     }
-    
+
     func addAnimationView() {
         animationView = AnimationView(name: "21267-sucsses-button")
         animationView.frame = CGRect(x: animationDisp.bounds.minX, y: animationDisp.bounds.minY, width: animationDisp.frame.width, height: animationDisp.frame.height)
@@ -83,11 +81,11 @@ class ReserveViewController: UIViewController {
         let items = [screenShotImage] as [Any]
         
         
-               let activityVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
-               
-               present(activityVC, animated: true, completion: nil)
+        let activityVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
         
-        }
+        present(activityVC, animated: true, completion: nil)
+        
+    }
     
     func takeScreenShot(){
         //スクリーンショットの幅と高さを決める。これしかないくらいの書き方で、func takeScreenShot()に書いてある全体のコードで、スクリーンショットがとれるよ、と思っていた方が、難しいこと考えずにできる！
@@ -103,6 +101,14 @@ class ReserveViewController: UIViewController {
         UIGraphicsEndImageContext()
     }
     @objc func changeView() {
-           navigationController?.popViewController(animated: true)
+        navigationController?.popViewController(animated: true)
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+        contentText.endEditing(true)
+        }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+        return true
     }
 }

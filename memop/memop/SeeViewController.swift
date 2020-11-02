@@ -67,4 +67,5 @@ class SeeViewController: UIViewController {
     screenShotImage = UIGraphicsGetImageFromCurrentImageContext()!
     UIGraphicsEndImageContext()
 }
+    
 }
