@@ -30,9 +30,6 @@ class SeeViewController: UIViewController {
     
     @IBAction func newButton(_ sender: Any) {
         var newMemos = UserDefaults.standard.array(forKey: "memos") as? [[String:String]]
-        
-        
-        
         //タイトル
         dispmemo[indexNum]["title"] = displayTaitol.text
         dispmemo[indexNum]["date"] = displayDate.text
@@ -56,6 +53,7 @@ class SeeViewController: UIViewController {
     
     func takeScreenShot(){
         //スクリーンショットの幅と高さを決める。これしかないくらいの書き方で、func takeScreenShot()に書いてある全体のコードで、スクリーンショットがとれるよ、と思っていた方が、難しいこと考えずにできる！
+        
         let width = CGFloat(UIScreen.main.bounds.size.width)
         let height = CGFloat(UIScreen.main.bounds.size.height/1.3)
         let size = CGSize(width: width, height: height)
@@ -69,6 +67,7 @@ class SeeViewController: UIViewController {
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
+        displayContent.resignFirstResponder()
         
     }
     

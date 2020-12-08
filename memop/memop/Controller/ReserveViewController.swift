@@ -49,17 +49,13 @@ class ReserveViewController: UIViewController,UITextFieldDelegate, UITextViewDel
             let content = contentText.text,let date = dateText.text else{
                 return
         }
-        let defaults = UserDefaults.standard
         
-        // let memos = ["title":taitol,"content":content]
-        
-        //defaults.set(memos, forKey: "memos")
         //前の保存してあるものが入れ変わらないように、前のデータを一回保存する。
-        var saveData = defaults.array(forKey: "memos") as? [[String:String]] ?? []
+        var saveData = UserDefaults.standard.array(forKey: "memos") as? [[String:String]] ?? []
         let memos = ["title":taitol,"content":content,"date":date]
         saveData.append(memos)
         
-        defaults.set(saveData, forKey: "memos")
+        UserDefaults.standard.set(saveData, forKey: "memos")
         addAnimationView()
         
         timer = Timer.scheduledTimer(timeInterval: 3.0,
@@ -99,9 +95,6 @@ class ReserveViewController: UIViewController,UITextFieldDelegate, UITextViewDel
         
         screenShotImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
-    }
-    @objc func changeView() {
-        navigationController?.popViewController(animated: true)
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)

@@ -54,6 +54,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		529365B1257E027600B5BCC8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		529365B2257E028B00B5BCC8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				52B525F424DDAE0E00BEB281 /* Main.storyboard */,
+				52B525F724DDAE1300BEB281 /* Assets.xcassets */,
+				524D431F24F3E09300CBC469 /* CustomCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		529365B3257E02DC00B5BCC8 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				52B525F224DDAE0E00BEB281 /* ViewController.swift */,
+				52B5260224DE41C700BEB281 /* ReserveViewController.swift */,
+				52B5260424DE41DE00BEB281 /* SeeViewController.swift */,
+				524D431E24F3E09300CBC469 /* CustomCell.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		52B525E224DDAE0E00BEB281 = {
 			isa = PBXGroup;
 			children = (
@@ -75,18 +103,14 @@
 		52B525ED24DDAE0E00BEB281 /* memop */ = {
 			isa = PBXGroup;
 			children = (
+				529365B1257E027600B5BCC8 /* Model */,
+				529365B2257E028B00B5BCC8 /* View */,
+				529365B3257E02DC00B5BCC8 /* Controller */,
 				52B525EE24DDAE0E00BEB281 /* AppDelegate.swift */,
 				52B525F024DDAE0E00BEB281 /* SceneDelegate.swift */,
-				52B525F224DDAE0E00BEB281 /* ViewController.swift */,
-				52B5260224DE41C700BEB281 /* ReserveViewController.swift */,
-				52B5260424DE41DE00BEB281 /* SeeViewController.swift */,
-				52B525F424DDAE0E00BEB281 /* Main.storyboard */,
-				52B525F724DDAE1300BEB281 /* Assets.xcassets */,
 				52B525F924DDAE1300BEB281 /* LaunchScreen.storyboard */,
 				525C163C2510FB11007ACFDD /* 21267-sucsses-button.json */,
 				52B525FC24DDAE1300BEB281 /* Info.plist */,
-				524D431E24F3E09300CBC469 /* CustomCell.swift */,
-				524D431F24F3E09300CBC469 /* CustomCell.xib */,
 				525C163A250F251F007ACFDD /* 4155-save-button-green-rounded-cta-call-to-action.json */,
 			);
 			path = memop;
