@@ -10,25 +10,22 @@ import UIKit
 
 import Lottie
 
-class ReserveViewController: UIViewController,UITextFieldDelegate, UITextViewDelegate{
+class ReserveViewController: UIViewController{
     
     @IBOutlet weak var taitolText: UITextField!
     @IBOutlet weak var contentText: UITextView!
     @IBOutlet weak var dateText: UITextField!
     @IBOutlet weak var saveB: UIButton!
-    
     @IBOutlet weak var animationDisp: UIView!
-    var timer:Timer = Timer()
     
+    var timer:Timer = Timer()
     var resString = ""
     var conString = ""
     var userDfTaitol = ""
-    
     var screenShotImage = UIImage()
-    
     //AnimationViewを宣言
     var animationView = AnimationView()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         taitolText.delegate = self
@@ -36,7 +33,11 @@ class ReserveViewController: UIViewController,UITextFieldDelegate, UITextViewDel
         contentText.delegate = self
         
     }
-
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+        contentText.endEditing(true)
+    }
+    
     func addAnimationView() {
         animationView = AnimationView(name: "21267-sucsses-button")
         animationView.frame = CGRect(x: animationDisp.bounds.minX, y: animationDisp.bounds.minY, width: animationDisp.frame.width, height: animationDisp.frame.height)
@@ -46,8 +47,8 @@ class ReserveViewController: UIViewController,UITextFieldDelegate, UITextViewDel
     
     @IBAction func reserveButton(_ sender: Any) {
         guard let taitol = taitolText.text,
-            let content = contentText.text,let date = dateText.text else{
-                return
+              let content = contentText.text,let date = dateText.text else{
+            return
         }
         
         //前の保存してあるものが入れ変わらないように、前のデータを一回保存する。
@@ -63,19 +64,14 @@ class ReserveViewController: UIViewController,UITextFieldDelegate, UITextViewDel
                                      selector: #selector(self.timerCounter),
                                      userInfo: nil,
                                      repeats: false)
-        
-        
     }
     @objc func timerCounter() {
         navigationController?.popViewController(animated: true)
     }
     @IBAction func shareButton(_ sender: Any) {
         takeScreenShot()
-        
-        
         //アクティビティービューに乗っけて、シェアする
         let items = [screenShotImage] as [Any]
-        
         
         let activityVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
         
@@ -96,10 +92,9 @@ class ReserveViewController: UIViewController,UITextFieldDelegate, UITextViewDel
         screenShotImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
     }
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        view.endEditing(true)
-        contentText.endEditing(true)
-        }
+}
+extension ReserveViewController:UITextFieldDelegate, UITextViewDelegate {
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         view.endEditing(true)
         return true
